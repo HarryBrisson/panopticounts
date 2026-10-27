@@ -1,0 +1,120 @@
+{
+ "built_at": "2026-10-27T01:50:38Z",
+ "osm_data_as_of": "2026-10-27T01:41:00Z",
+ "flock_inventory": {
+  "page": "https://proton.me/flock-camera-map",
+  "fetched_at": "2026-10-27T01:41:00Z",
+  "cameras": {
+   "url": "https://proton.me/_astro/cameras.CiPXVBuV.bin",
+   "file": "cameras.CiPXVBuV.bin",
+   "bytes": 5035515,
+   "sha256": "9c3e8a5ecdc4509ca4ff3107b65ba74ddfa85d9b2a20e0c627c7294ccc5efa1c"
+  },
+  "script": {
+   "url": "https://proton.me/_astro/FlockCameraMap.astro_astro_type_script_index_0_lang.DfivJHvi.js",
+   "file": "FlockCameraMap.astro_astro_type_script_index_0_lang.DfivJHvi.js",
+   "bytes": 65595,
+   "sha256": "512e81c31ed2573680c730f46136bda344eea15e284c5bee7cc92cb0d8ab54b9"
+  }
+ },
+ "parameters": {
+  "ring_miles": 3.0,
+  "near_miles": 0.25,
+  "match_meters": 50.0,
+  "per_population": 10000
+ },
+ "citywide": {
+  "area_km2": 597.7617,
+  "population": 2746420,
+  "plate_readers": 814,
+  "flock_plate_readers": 135,
+  "plate_readers_per_sqkm": 1.3617,
+  "flock_plate_readers_per_sqkm": 0.2258,
+  "plate_readers_per_10k": 2.964,
+  "residents_near_reader_pct": 40.3,
+  "nearest_reader_mi": 0.359
+ },
+ "readers_in_city_by_vendor": {
+  "unknown": 357,
+  "Motorola Solutions": 258,
+  "Flock Safety": 135,
+  "Genetec": 54,
+  "Leonardo": 6,
+  "Auto Patrol": 1,
+  "Axis Communications": 1,
+  "Neology, Inc.": 1,
+  "Axis communications": 1
+ },
+ "osm_readers_in_city_by_operator": {
+  "(not tagged)": 424,
+  "Chicago Police Department": 224,
+  "Illinois State Police": 58,
+  "University of Chicago Police Department": 8,
+  "Lowe's": 1
+ },
+ "merge": {
+  "osm_counted_other_vendor": 745,
+  "osm_matched_flock_inPlanning_counted": 33,
+  "osm_matched_flock_in_service": 606,
+  "osm_matched_flock_decommissioned": 25,
+  "osm_counted_flock_not_in_inventory": 102,
+  "osm_in_ring": 1511,
+  "flock_in_service_in_ring": 897
+ },
+ "osm_coverage_of_flock": {
+  "city": {
+   "flock_in_service": 95,
+   "mapped_in_osm": 62,
+   "share_mapped_pct": 65.3
+  },
+  "north_of_madison": {
+   "flock_in_service": 46,
+   "mapped_in_osm": 34,
+   "share_mapped_pct": 73.9
+  },
+  "south_of_madison": {
+   "flock_in_service": 49,
+   "mapped_in_osm": 28,
+   "share_mapped_pct": 57.1
+  }
+ },
+ "flock_devices_in_ring": {
+  "wing/inService/no_plates": 824,
+  "falcon/inService/plates": 823,
+  "falcon/inPlanning/no_plates": 264,
+  "wing/inPlanning/no_plates": 236,
+  "falcon/decommissioned/no_plates": 212,
+  "raven/decommissioned/no_plates": 183,
+  "picard/inService/no_plates": 181,
+  "raven/inService/no_plates": 154,
+  "condor/inService/no_plates": 120,
+  "picard/inPlanning/no_plates": 103,
+  "condor/inPlanning/no_plates": 81,
+  "picardPtz/inPlanning/no_plates": 46,
+  "picard/decommissioned/no_plates": 43,
+  "falconFlex/inService/plates": 38,
+  "falconHighway/inService/plates": 24,
+  "condor/decommissioned/no_plates": 21,
+  "wing/inService/plates": 12,
+  "avicore/decommissioned/no_plates": 11,
+  "raven/inPlanning/no_plates": 11,
+  "wing/decommissioned/no_plates": 11,
+  "falconHighway/inPlanning/no_plates": 10,
+  "avicore/inService/no_plates": 8,
+  "falconFlex/inPlanning/no_plates": 7,
+  "picardPtz/inService/no_plates": 6,
+  "avicore/inPlanning/no_plates": 6,
+  "trailer/inPlanning/no_plates": 4,
+  "falconFlex/decommissioned/no_plates": 3,
+  "trailer/inService/no_plates": 2,
+  "multiEvidenceDevice/inService/no_plates": 2,
+  "talkDown/inService/no_plates": 2,
+  "drone/inPlanning/no_plates": 1,
+  "droneControllerBox/inPlanning/no_plates": 1,
+  "droneDockingStation/inService/no_plates": 1,
+  "falconHighway/decommissioned/no_plates": 1,
+  "backhaulBox/inService/no_plates": 1
+ },
+ "tracts_published": 799,
+ "blocks_used": 34204
+}

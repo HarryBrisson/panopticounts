@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+*.egg-info/
+# Proton's inventory, the OSM pull, Census pulls and the matched device list never leave the machine.
+data/raw/

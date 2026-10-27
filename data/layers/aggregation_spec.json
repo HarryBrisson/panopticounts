@@ -1,0 +1,166 @@
+{
+ "contract": "byop/v1",
+ "source": "panopticounts",
+ "source_url": "https://github.com/HarryBrisson/panopticounts",
+ "caveat": "Non-Flock readers come only from volunteer mapping in OpenStreetMap, which is incomplete: OSM had mapped 65.3% of Flock's in-service readers in the city (73.9% north of Madison Street, 57.1% south), so non-Flock readers are likely undercounted, more so on the South Side. Flock's inventory is complete but dates from December 2025.",
+ "layers": {
+  "wards": {
+   "file": "wards.csv",
+   "kind": "polygon_values",
+   "id_field": "ward_id",
+   "geography": "chicago_ward_2023",
+   "as_of": "2026-10-27",
+   "value": "a Chicago ward (2023 map): its area, 2020 population, the plate readers inside it, and how far its residents live from the nearest one"
+  },
+  "community_areas": {
+   "file": "community_areas.csv",
+   "kind": "polygon_values",
+   "id_field": "community_area_id",
+   "geography": "chicago_community_area",
+   "as_of": "2026-10-27",
+   "value": "a Chicago community area: its area, 2020 population, the plate readers inside it, and how far its residents live from the nearest one"
+  },
+  "tracts": {
+   "file": "tracts.csv",
+   "kind": "polygon_values",
+   "id_field": "geoid",
+   "geography": "census_tract_2020",
+   "as_of": "2026-10-27",
+   "value": "a 2020 Cook County census tract at least 1% inside Chicago: its area, 2020 population, the plate readers inside it, and how far its residents live from the nearest one"
+  }
+ },
+ "metrics": {
+  "alpr_per_sqkm": {
+   "layer": [
+    "wards",
+    "community_areas",
+    "tracts"
+   ],
+   "combine": "weighted_mean",
+   "category": "good_governance",
+   "default_weight": 0,
+   "time_invariant": false,
+   "keywords": "license plate reader readers lpr alpr flock camera cameras surveillance police tracking privacy",
+   "extra_categories": [
+    "safety"
+   ],
+   "icon_svg": "<path d=\"M3 6.5 L12.5 4 L14 9 L4.5 11.5 Z\"/><path d=\"M14.2 5.6 L17 4.9\"/><path d=\"M14.7 7.6 L17.5 6.9\"/><path d=\"M8.5 10.6 L9.3 14 L5 14 L5 17.5\"/>",
+   "value": "plate_readers_per_sqkm",
+   "weight": "area_km2",
+   "unit": "rate",
+   "direction": "lower",
+   "label": "Plate Reader Density",
+   "description": "License-plate-reading cameras per square kilometer.",
+   "methodology": "License-plate readers of every vendor from OpenStreetMap (surveillance:type=ALPR; \u00a9 OpenStreetMap contributors), merged with Flock Safety's in-service plate readers from the December 2025 device inventory behind Proton's Flock camera map; an OSM reader within 50 m of a Flock device is treated as that device. Readers counted per area and divided by its land area. Computed directly for wards and community areas; other boundaries take the 2020 census tracts that overlap them. Fewer readers is scored as better here, a privacy reading; others count the same cameras as a public-safety investment, so the measure is unweighted by default."
+  },
+  "alpr_per_10k_residents": {
+   "layer": [
+    "wards",
+    "community_areas",
+    "tracts"
+   ],
+   "combine": "weighted_mean",
+   "category": "good_governance",
+   "default_weight": 0,
+   "time_invariant": false,
+   "keywords": "license plate reader readers lpr alpr flock camera cameras surveillance police tracking privacy",
+   "extra_categories": [
+    "safety"
+   ],
+   "icon_svg": "<path d=\"M3 6.5 L12.5 4 L14 9 L4.5 11.5 Z\"/><path d=\"M14.2 5.6 L17 4.9\"/><path d=\"M14.7 7.6 L17.5 6.9\"/><path d=\"M8.5 10.6 L9.3 14 L5 14 L5 17.5\"/>",
+   "value": "plate_readers_per_10k",
+   "weight": "population",
+   "unit": "rate",
+   "direction": "lower",
+   "label": "Plate Readers per 10k",
+   "description": "License-plate-reading cameras per 10,000 residents.",
+   "methodology": "License-plate readers of every vendor from OpenStreetMap (surveillance:type=ALPR; \u00a9 OpenStreetMap contributors), merged with Flock Safety's in-service plate readers from the December 2025 device inventory behind Proton's Flock camera map; an OSM reader within 50 m of a Flock device is treated as that device. Readers per 10,000 residents (2020 Census). Computed directly for wards and community areas; other boundaries take the 2020 census tracts that overlap them. Fewer readers is scored as better here, a privacy reading; others count the same cameras as a public-safety investment, so the measure is unweighted by default."
+  },
+  "residents_near_alpr_pct": {
+   "layer": [
+    "wards",
+    "community_areas",
+    "tracts"
+   ],
+   "combine": "weighted_mean",
+   "category": "good_governance",
+   "default_weight": 0,
+   "time_invariant": false,
+   "keywords": "license plate reader readers lpr alpr flock camera cameras surveillance police tracking privacy",
+   "extra_categories": [
+    "safety"
+   ],
+   "icon_svg": "<path d=\"M3 6.5 L12.5 4 L14 9 L4.5 11.5 Z\"/><path d=\"M14.2 5.6 L17 4.9\"/><path d=\"M14.7 7.6 L17.5 6.9\"/><path d=\"M8.5 10.6 L9.3 14 L5 14 L5 17.5\"/>",
+   "value": "residents_near_reader_pct",
+   "weight": "population",
+   "unit": "percent",
+   "direction": "lower",
+   "label": "Near a Plate Reader",
+   "description": "Share of residents who live within a quarter mile of a license-plate-reading camera.",
+   "methodology": "License-plate readers of every vendor from OpenStreetMap (surveillance:type=ALPR; \u00a9 OpenStreetMap contributors), merged with Flock Safety's in-service plate readers from the December 2025 device inventory behind Proton's Flock camera map; an OSM reader within 50 m of a Flock device is treated as that device. Straight-line distance from each populated 2020 Census block to the closest reader, including readers up to 3 miles outside the city. Computed directly for wards and community areas; other boundaries take the 2020 census tracts that overlap them. Fewer readers is scored as better here, a privacy reading; others count the same cameras as a public-safety investment, so the measure is unweighted by default."
+  },
+  "alpr_nearest_mi": {
+   "layer": [
+    "wards",
+    "community_areas",
+    "tracts"
+   ],
+   "combine": "weighted_mean",
+   "category": "good_governance",
+   "default_weight": 0,
+   "time_invariant": false,
+   "keywords": "license plate reader readers lpr alpr flock camera cameras surveillance police tracking privacy",
+   "extra_categories": [
+    "safety"
+   ],
+   "icon_svg": "<path d=\"M3 6.5 L12.5 4 L14 9 L4.5 11.5 Z\"/><path d=\"M14.2 5.6 L17 4.9\"/><path d=\"M14.7 7.6 L17.5 6.9\"/><path d=\"M8.5 10.6 L9.3 14 L5 14 L5 17.5\"/>",
+   "value": "nearest_reader_mi",
+   "weight": "population",
+   "unit": "miles",
+   "direction": "higher",
+   "label": "Nearest Plate Reader",
+   "description": "How far the average resident lives from the closest license-plate-reading camera.",
+   "methodology": "License-plate readers of every vendor from OpenStreetMap (surveillance:type=ALPR; \u00a9 OpenStreetMap contributors), merged with Flock Safety's in-service plate readers from the December 2025 device inventory behind Proton's Flock camera map; an OSM reader within 50 m of a Flock device is treated as that device. Straight-line distance from each populated 2020 Census block to the closest reader (including readers up to 3 miles outside the city), averaged over residents. Computed directly for wards and community areas; other boundaries take the 2020 census tracts that overlap them. Fewer readers is scored as better here, a privacy reading; others count the same cameras as a public-safety investment, so the measure is unweighted by default."
+  },
+  "flock_alpr_per_sqkm": {
+   "layer": [
+    "wards",
+    "community_areas",
+    "tracts"
+   ],
+   "combine": "weighted_mean",
+   "category": "good_governance",
+   "default_weight": 0,
+   "time_invariant": false,
+   "keywords": "license plate reader readers lpr alpr flock camera cameras surveillance police tracking privacy",
+   "extra_categories": [
+    "safety"
+   ],
+   "icon_svg": "<path d=\"M3 6.5 L12.5 4 L14 9 L4.5 11.5 Z\"/><path d=\"M14.2 5.6 L17 4.9\"/><path d=\"M14.7 7.6 L17.5 6.9\"/><path d=\"M8.5 10.6 L9.3 14 L5 14 L5 17.5\"/>",
+   "value": "flock_plate_readers_per_sqkm",
+   "weight": "area_km2",
+   "unit": "rate",
+   "direction": "lower",
+   "label": "Flock Reader Density",
+   "description": "Flock Safety license-plate-reading cameras per square kilometer.",
+   "methodology": "Flock Safety's in-service plate readers from the December 2025 device inventory behind Proton's Flock camera map, plus Flock readers mapped in OpenStreetMap since (\u00a9 OpenStreetMap contributors). Counted per area and divided by its land area. Computed directly for wards and community areas; other boundaries take the 2020 census tracts that overlap them. Fewer readers is scored as better here, a privacy reading; others count the same cameras as a public-safety investment, so the measure is unweighted by default."
+  }
+ },
+ "parameters": {
+  "ring_miles": 3.0,
+  "near_miles": 0.25,
+  "match_meters": 50.0,
+  "per_population": 10000
+ },
+ "provenance": {
+  "flock_inventory": {
+   "page": "https://proton.me/flock-camera-map",
+   "sha256": "9c3e8a5ecdc4509ca4ff3107b65ba74ddfa85d9b2a20e0c627c7294ccc5efa1c",
+   "note": "Not redistributed; only tract aggregates are published."
+  },
+  "osm": {
+   "query": "[out:json][timeout:120];nwr[\"surveillance:type\"=\"ALPR\"](41.594,-88.008,42.074,-87.456);out center tags;",
+   "license": "ODbL 1.0, \u00a9 OpenStreetMap contributors"
+  }
+ }
+}
