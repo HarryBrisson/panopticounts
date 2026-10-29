@@ -267,8 +267,9 @@ SOURCES_SENTENCE = (
     "License-plate readers of every vendor from OpenStreetMap (surveillance:type=ALPR; © OpenStreetMap "
     "contributors), merged with Flock Safety's in-service plate readers from the December 2025 device inventory "
     "behind Proton's Flock camera map; an OSM reader within 50 m of a Flock device is treated as that device.")
-DIRECTION_SENTENCE = ("Fewer readers is scored as better here, a privacy reading; others count the same cameras "
-                      "as a public-safety investment, so the measure is unweighted by default.")
+DIRECTION_SENTENCE = ("Fewer readers is scored as better by default, a privacy reading; others count the same "
+                      "cameras as a public-safety investment, so the direction is marked contested (each reader "
+                      "can flip it) and the measure is unweighted by default.")
 
 
 def coverage_caveat(coverage: dict[str, Any]) -> str:
@@ -287,7 +288,9 @@ KEYWORDS = "license plate reader readers lpr alpr flock camera cameras surveilla
 
 
 def spec(as_of: str, flock_meta: dict[str, Any], coverage: dict[str, Any]) -> dict[str, Any]:
+    # direction_contested (byop v1.4): privacy vs public safety is the reader's call; `direction` is the default
     common = {"layer": ["wards", "community_areas", "tracts"], "combine": "weighted_mean", "category": "good_governance", "default_weight": 0,
+              "direction_contested": True,
               "time_invariant": False, "keywords": KEYWORDS, "extra_categories": ["safety"], "icon_svg": ICON}
     tract_note = ("Computed directly for wards and community areas; other boundaries take the 2020 census "
                   "tracts that overlap them.")

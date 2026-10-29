@@ -49,9 +49,10 @@ No camera, coordinate or block-level row is in the release.
 | `alpr_nearest_mi` | mean miles from residents to the nearest reader | population | higher |
 | `flock_alpr_per_sqkm` | Flock readers per km² | area | lower |
 
-**Direction is a values call.** Fewer readers is scored as better, a privacy reading; others count
-the same cameras as a public-safety investment. Every metric therefore ships with `default_weight: 0`,
-and the methodology text says so.
+**Direction is a values call.** Fewer readers is scored as better by default, a privacy reading; others
+count the same cameras as a public-safety investment. Every metric therefore ships with
+`"direction_contested": true` (byop v1.4: a consumer lets each reader flip it, and Penlight shows a
+"lower is better / higher is better" switch) and `default_weight: 0`, and the methodology text says so.
 
 ## What the numbers say (OSM 2026-10-27, Flock inventory Dec 2025)
 

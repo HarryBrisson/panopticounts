@@ -73,3 +73,15 @@ def test_released_files_carry_no_coordinates():
     text = (LAYERS / "aggregation_spec.json").read_text() + (PROCESSED / "summary.json").read_text()
     assert '"coordinates"' not in text and '"lat"' not in text
     assert not list(LAYERS.glob("*.geojson")) and not list(LAYERS.glob("*.bin"))
+
+
+def test_every_metric_is_a_contested_direction_left_unweighted():
+    """Privacy vs public safety is the reader's call (byop v1.4): each metric says so, keeps a default
+    direction for consumers that predate the flag, and enters nobody's index unasked."""
+    metrics = json.loads((LAYERS / "aggregation_spec.json").read_text())["metrics"]
+    assert metrics
+    for metric_id, metric in metrics.items():
+        assert metric["direction_contested"] is True, metric_id
+        assert metric["direction"] in ("higher", "lower"), metric_id
+        assert metric["default_weight"] == 0, metric_id
+        assert "others count the same cameras as a public-safety investment" in metric["methodology"], metric_id
